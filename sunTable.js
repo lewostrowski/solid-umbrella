@@ -3,9 +3,9 @@ src https://sunrise-sunset.org/api */
 
 let dateNow = Date.now(); // actual date in ms
 let tdrLink = "json.json";
-const interval = setInterval(sunTable, 1800000) // data update every 30 min
+const interval = setInterval(setSunTable, 10800000 ) // data update every 3 houre
 
-function sunTable() {
+function setSunTable() { // main function
 
   // tdr stands for time & date request
   $.getJSON(tdrLink, function(tdr) {
@@ -35,21 +35,27 @@ function sunTable() {
     let sunset = tdrSRn + tz;
     let twEnd = tdrCTEn + tz;
 
-    // change on page in accordance to sunrise and sunset
-    if (dateNow >= twBegin && dateNow < sunrise){
-      let dayDuration = twEnd - dateNow; // remaining time to sunset
-      console.log(dayDuration)
-      console.log("Civil twilight")
-    } else if (dateNow >= sunrise && dateNow < sunset) {
-      let dayDuration = twEnd - dateNow; // remaining time to sunset
-      console.log(dayDuration)
-      console.log("Day")
-    } else if (dateNow >= sunset && dateNow < twEnd) {
-      console.log("Sunset")
-    } else {
-      console.log("Night")
-    }
+
+      // change page content in accordance to sunrise and sunset
+      const interval = setInterval(sunPosition, 60000) // data update every 1 min
+      function sunPosition() { // function checking sun position
+        if (dateNow >= twBegin && dateNow < sunrise){
+          let dayDuration = twEnd - dateNow; // remaining time to sunset
+          console.log(dayDuration)
+          console.log("Civil twilight")
+        } else if (dateNow >= sunrise && dateNow < sunset) {
+          let dayDuration = twEnd - dateNow; // remaining time to sunset
+          console.log(dayDuration)
+          console.log("Day")
+        } else if (dateNow >= sunset && dateNow < twEnd) {
+          console.log("Sunset")
+        } else {
+          console.log("Night")
+        }
+      }
+      sunPosition(); // running function
+
   });
 }
 
-sunTable(); // running function
+setSunTable(); // running main function
