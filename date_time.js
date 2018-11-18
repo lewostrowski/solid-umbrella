@@ -1,4 +1,4 @@
-const dynamicTime = setInterval(showClock, 1000); // check time every second
+const dynamicTime = setInterval(showClock, 1000);
 function showClock() {
   let c = new Date();
   let h = c.getHours();
@@ -18,16 +18,17 @@ function showClock() {
 }
 
 
-const dynamicDate = setInterval(showDate, 1000); // check time every second
+const dynamicDate = setInterval(showDate, 1000);
 function showDate() {
   let d = new Date();
   let d_num = d.getDate();
+  let d_week = d.getDay();
   let d_name = ["niedziela", "poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota"];
   let m_num = d.getMonth();
   let m_name = ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia"];
   let y = d.getFullYear();
 
-  document.getElementById("d_name").innerHTML = d_name[d_num];
+  document.getElementById("d_name").innerHTML = d_name[d_week];
   document.getElementById("d_num").innerHTML = d_num;
   document.getElementById("m_name").innerHTML = m_name[m_num];
   document.getElementById("year").innerHTML = y;
