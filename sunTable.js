@@ -2,7 +2,7 @@
 src https://sunrise-sunset.org/api */
 
 let dateNow = Date.now(); // actual date in ms
-let tdrLink = "json.json";
+let tdrLink = "json.json"; // link to API 
 const interval = setInterval(setSunTable, 10800000 ) // data update every 3 houre
 
 function setSunTable() { // main function
